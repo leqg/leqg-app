@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="info.leqg.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <platform name="firefoxos">
+        <icon height="128" src="icon/icon-128.png" width="128" />
+        <icon height="60" src="icon/icon-60.png" width="60" />
+    </platform>
+    <name>LeQG</name>
+    <description>
+        Gestion de base de données électorale
+    </description>
+    <author email="contact@rudloff.pro" href="https://rudloff.pro/">
+        Pierre Rudloff
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
