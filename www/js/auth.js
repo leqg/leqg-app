@@ -11,6 +11,11 @@ var auth = (function () {
             }
         );
     }
+    function loginError(e) {
+        console.log(e.responseJSON.errors[0].title);
+        $('#auth_error_msg').text(e.responseJSON.errors[0].title);
+        $('#auth_error').popup('open');
+    }
     function login() {
         var email = $('#auth_email').val();
         localStorage.setItem('auth_email', email);
@@ -18,6 +23,7 @@ var auth = (function () {
             {
                 url: BASE_URL + 'authenticate',
                 success: getToken,
+                error: loginError,
                 headers: { 'Authorization': 'Basic ' + window.btoa(email + ':' + $('#auth_pass').val()) }
             }
         );
