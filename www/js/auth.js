@@ -1,18 +1,20 @@
-/*global $*/
+/*global $, BASE_URL*/
 /*jslint browser: true, devel: true*/
 var auth = (function () {
     'use strict';
     var my = {};
     function getToken(e) {
-        //On reçoit le token ici
-        console.log(e);
+        $.ajax(
+            {
+                url: BASE_URL,
+                headers: { 'Authorization': 'LeQG ' + e.tokens[0].id }
+            }
+        );
     }
     function login() {
         $.ajax(
             {
-                dataType: 'json',
-                method: 'POST',
-                url: 'http://api.leqg.info/authenticate',
+                url: BASE_URL + 'authenticate',
                 success: getToken,
                 headers: { 'Authorization': 'Basic ' + window.btoa($('#auth_email').val() + ':' + $('#auth_pass').val()) }
             }
