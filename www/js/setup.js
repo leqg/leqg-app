@@ -4,7 +4,8 @@ $.ajaxSetup(
         beforeSend: function () {
             'use strict';
             $.mobile.loading(
-                'show', {
+                'show',
+                {
                     text: 'Chargement…',
                     textVisible: true
                 }
