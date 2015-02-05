@@ -34,7 +34,12 @@ var contacts = (function () {
         );
     }
     function startSearch() {
-        search($('#contacts_search_query').val());
+        var query = $('#contacts_search_query').val();
+        if (query) {
+            search();
+        } else {
+            error.display('Veuillez entrer une requête');
+        }
     }
     my.init = function () {
         $contacts_search_results_list = $('#contacts_search_results_list');
