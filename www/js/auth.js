@@ -1,5 +1,5 @@
 /*global $, BASE_URL*/
-/*jslint browser: true, devel: true*/
+/*jslint browser: true*/
 var auth = (function () {
     'use strict';
     var my = {};
@@ -12,7 +12,6 @@ var auth = (function () {
         );
     }
     function loginError(e) {
-        console.log(e.responseJSON.errors[0].title);
         $('#auth_error_msg').text(e.responseJSON.errors[0].title);
         $('#auth_error').popup('open');
     }
