@@ -13,7 +13,7 @@ var nav = (function () {
     };
     my.gotoCurPage = function () {
         var page = '';
-        if (my.page) {
+        if (my.page && my.page !== 'auth') {
             page = my.page;
         } else {
             page = DEFAULT_PAGE;
