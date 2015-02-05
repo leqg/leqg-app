@@ -20,22 +20,20 @@
         </div>
     </div>
     <div data-role="page" id="auth">
-        <form>
-            <h1><span>Le</span>QG<span>.info</span></h1>
-            <ul data-role="listview">
-                <li>
-                    <label for="auth_email">Email de connexion :</label>
-                    <input type="text" id="auth_email" autofocus="autofocus" />
-                </li>
-                <li>
-                    <label for="auth_pass">Mot de passe :</label>
-                    <input type="password" id="auth_pass" />
-                </li>
-                <li class="submit">
-                    <input type="button" id="auth_login_btn" value="Se connecter" />
-                </li>
-            </ul>
-        </form>
+        <h1><span>Le</span>QG<span>.info</span></h1>
+        <ul data-role="listview">
+            <li>
+                <label for="auth_email">Email de connexion :</label>
+                <input type="text" id="auth_email" autofocus="autofocus" />
+            </li>
+            <li>
+                <label for="auth_pass">Mot de passe :</label>
+                <input type="password" id="auth_pass" />
+            </li>
+            <li class="submit">
+                <input type="button" id="auth_login_btn" value="Se connecter" />
+            </li>
+        </ul>
     </div>
     <div data-role="page" id="contacts">
         <ul data-role="listview">
@@ -45,17 +43,15 @@
         </ul>
     </div>
     <div data-role="page" id="contacts_search">
-        <form>
-            <ul data-role="listview">
-                <li>
-                    <label for="contacts_search_query">Requête :</label>
-                    <input type="search" id="contacts_search_query" autofocus="autofocus" />
-                </li>
-                <li class="submit">
-                    <input type="button" id="contacts_search_send_btn" value="Recherche" />
-                </li>
-            </ul>
-        </form>
+        <ul data-role="listview">
+            <li>
+                <label for="contacts_search_query">Requête :</label>
+                <input type="search" id="contacts_search_query" autofocus="autofocus" />
+            </li>
+            <li class="submit">
+                <input type="button" id="contacts_search_send_btn" value="Recherche" />
+            </li>
+        </ul>
     </div>
     <div data-role="page" id="contacts_search_results">
         <ul data-role="listview" id="contacts_search_results_list"></ul>
