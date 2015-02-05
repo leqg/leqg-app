@@ -24,12 +24,15 @@ var auth = (function () {
         if (!navigator.onLine) {
             error.display('Impossible de se connecter au réseau');
         } else {
-            jsonapi.get('authenticate', {
-                success: authSuccess,
-                error: loginError,
-                user: email,
-                pass: $('#auth_pass').val()
-            });
+            jsonapi.get(
+                'authenticate',
+                {
+                    success: authSuccess,
+                    error: loginError,
+                    user: email,
+                    pass: $('#auth_pass').val()
+                }
+            );
         }
     }
     my.token = '';
@@ -38,10 +41,13 @@ var auth = (function () {
         my.token = token;
     };
     my.isTokenValid = function (success, error) {
-        jsonapi.get('authenticate', {
-            success: success,
-            error: error
-        });
+        jsonapi.get(
+            'authenticate',
+            {
+                success: success,
+                error: error
+            }
+        );
     };
     my.init = function () {
         var email = localStorage.getItem('auth_email'),

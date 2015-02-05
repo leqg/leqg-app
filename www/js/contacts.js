@@ -8,9 +8,12 @@ var contacts = (function () {
     function searchResult(results) {
         if (results.contacts && results.contacts.length > 0) {
             $contacts_search_results_list.empty();
-            $.each(results.contacts, function (index, contact) {
-                $contacts_search_results_list.append('<li>' + contact.nom + ' ' + contact.prenoms + '</li>');
-            });
+            $.each(
+                results.contacts,
+                function (index, contact) {
+                    $contacts_search_results_list.append('<li>' + contact.nom + ' ' + contact.prenoms + '</li>');
+                }
+            );
             $contacts_search_results_list.listview('refresh');
             nav.gotoPage('contacts_search_results');
         } else {
@@ -20,12 +23,15 @@ var contacts = (function () {
     function search(query) {
         localStorage.setItem('contact_searchquery', query);
         searchquery = query;
-        jsonapi.get('contact', {
-            filters: {
-                search: query
-            },
-            success: searchResult
-        });
+        jsonapi.get(
+            'contact',
+            {
+                filters: {
+                    search: query
+                },
+                success: searchResult
+            }
+        );
     }
     function startSearch() {
         search($('#contacts_search_query').val());
