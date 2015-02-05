@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="bower_components/jquery-mobile-bower/css/jquery.mobile.structure-1.4.5.min.css" />
 </head>
 <body>
-    <div data-role="page" id="auth">
-        <div data-role="popup" id="auth_error" data-history="false" data-transition="pop">
-            <div data-role="header">
-                <h1>Erreur</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <p id="auth_error_msg"></p>
-            </div>
+    <div data-role="popup" id="error" data-history="false" data-transition="pop">
+        <div data-role="header">
+            <h1>Erreur</h1>
         </div>
+        <div role="main" class="ui-content">
+            <p id="error_msg"></p>
+        </div>
+    </div>
+    <div data-role="page" id="auth">
         <form>
             <h1><span>Le</span>QG<span>.info</span></h1>
             <ul data-role="listview">
@@ -52,10 +52,13 @@
                     <input type="search" id="contacts_search_query" autofocus="autofocus" />
                 </li>
                 <li class="submit">
-                    <input type="button" id="contacts_search_send_btn" value="Se connecter" />
+                    <input type="button" id="contacts_search_send_btn" value="Recherche" />
                 </li>
             </ul>
         </form>
+    </div>
+    <div data-role="page" id="contacts_search_results">
+        <ul data-role="listview" id="contacts_search_results_list"></ul>
     </div>
 </body>
 </html>

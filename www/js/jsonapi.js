@@ -15,10 +15,11 @@ var jsonapi = (function () {
         }
         $.ajax(
             {
-                url: BASE_URL + resource,
+                url: BASE_URL + resource + '/',
                 success: params.success,
                 error: params.error,
-                headers: customHeaders
+                headers: customHeaders,
+                data: params.filters
             }
         );
     };

@@ -1,4 +1,4 @@
-/*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi*/
+/*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi, error*/
 /*jslint browser: true*/
 var auth = (function () {
     'use strict';
@@ -6,10 +6,6 @@ var auth = (function () {
     function authSuccess(e) {
         my.setToken(e.tokens[0].id);
         nav.gotoPage(DEFAULT_PAGE);
-    }
-    function displayError(msg) {
-        $('#auth_error_msg').text(msg);
-        $('#auth_error').popup('open');
     }
     function loginError(e, status) {
         var errorMsg;
@@ -20,13 +16,13 @@ var auth = (function () {
         } else {
             errorMsg = 'Erreur inconnue';
         }
-        displayError(errorMsg);
+        error.display(errorMsg);
     }
     function login() {
         var email = $('#auth_email').val();
         localStorage.setItem('auth_email', email);
         if (!navigator.onLine) {
-            displayError('Impossible de se connecter au réseau');
+            error.display('Impossible de se connecter au réseau');
         } else {
             jsonapi.get('authenticate', {
                 success: authSuccess,

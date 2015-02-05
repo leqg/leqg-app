@@ -1,5 +1,5 @@
 /*global $, DEFAULT_PAGE, auth*/
-/*jslint browser: true*/
+/*jslint browser: true, unparam: true*/
 var nav = (function () {
     'use strict';
     var my = {};
