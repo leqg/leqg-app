@@ -14,7 +14,7 @@ var contacts = (function () {
                     $contacts_search_results_list.append('<li>' + contact.nom + ' ' + contact.prenoms + '</li>');
                 }
             );
-            $contacts_search_results_list.listview('refresh');
+            $contacts_search_results_list.listview().listview('refresh');
             nav.gotoPage('contacts_search_results');
         } else {
             error.display('Aucun résultat');
