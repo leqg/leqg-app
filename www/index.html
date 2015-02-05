@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="bower_components/jquery-mobile-bower/css/jquery.mobile.structure-1.4.5.min.css" />
 </head>
 <body>
-    <div data-role="page">
+    <div data-role="page" id="auth">
         <div data-role="popup" id="auth_error" data-history="false" data-transition="pop">
             <div data-role="header">
                 <h1>Erreur</h1>
@@ -33,6 +33,26 @@
                 </li>
                 <li class="submit">
                     <input type="button" id="auth_login_btn" value="Se connecter" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div data-role="page" id="contacts">
+        <ul data-role="listview">
+            <li>
+                <a href="#contacts_search">Recherche</a>
+            </li>
+        </ul>
+    </div>
+    <div data-role="page" id="contacts_search">
+        <form>
+            <ul data-role="listview">
+                <li>
+                    <label for="contacts_search_query">Requête :</label>
+                    <input type="search" id="contacts_search_query" autofocus="autofocus" />
+                </li>
+                <li class="submit">
+                    <input type="button" id="contacts_search_send_btn" value="Se connecter" />
                 </li>
             </ul>
         </form>

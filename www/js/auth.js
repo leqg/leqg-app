@@ -1,15 +1,11 @@
-/*global $, BASE_URL*/
+/*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi*/
 /*jslint browser: true*/
 var auth = (function () {
     'use strict';
     var my = {};
-    function getToken(e) {
-        $.ajax(
-            {
-                url: BASE_URL,
-                headers: { 'Authorization': 'LeQG ' + e.tokens[0].id }
-            }
-        );
+    function authSuccess(e) {
+        my.setToken(e.tokens[0].id);
+        nav.gotoPage(DEFAULT_PAGE);
     }
     function displayError(msg) {
         $('#auth_error_msg').text(msg);
@@ -32,18 +28,31 @@ var auth = (function () {
         if (!navigator.onLine) {
             displayError('Impossible de se connecter au réseau');
         } else {
-            $.ajax(
-                {
-                    url: BASE_URL + 'authenticate',
-                    success: getToken,
-                    error: loginError,
-                    headers: { 'Authorization': 'Basic ' + window.btoa(email + ':' + $('#auth_pass').val()) }
-                }
-            );
+            jsonapi.get('authenticate', {
+                success: authSuccess,
+                error: loginError,
+                user: email,
+                pass: $('#auth_pass').val()
+            });
         }
     }
+    my.token = '';
+    my.setToken = function (token) {
+        localStorage.setItem('auth_token', token);
+        my.token = token;
+    };
+    my.isTokenValid = function (success, error) {
+        jsonapi.get('authenticate', {
+            success: success,
+            error: error
+        });
+    };
     my.init = function () {
-        var email = localStorage.getItem('auth_email');
+        var email = localStorage.getItem('auth_email'),
+            token = localStorage.getItem('auth_token');
+        if (token) {
+            my.token = token;
+        }
         if (email) {
             $('#auth_email').val(email);
         }
