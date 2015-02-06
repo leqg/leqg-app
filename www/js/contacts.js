@@ -36,7 +36,7 @@ var contacts = (function () {
     function startSearch() {
         var query = $('#contacts_search_query').val();
         if (query) {
-            search();
+            search(query);
         } else {
             error.display('Veuillez entrer une requête');
         }
