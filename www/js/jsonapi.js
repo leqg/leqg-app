@@ -19,7 +19,10 @@ var jsonapi = (function () {
                 success: params.success,
                 error: params.error,
                 headers: customHeaders,
-                data: params.filters
+                data: params.filters,
+                statusCode: {
+                    403: auth.logout
+                }
             }
         );
     };
