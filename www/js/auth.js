@@ -49,6 +49,11 @@ var auth = (function () {
             }
         );
     };
+    my.logout = function () {
+        my.token = '';
+        localStorage.removeItem('auth_token');
+        nav.gotoAuthPage();
+    };
     my.init = function () {
         var email = localStorage.getItem('auth_email'),
             token = localStorage.getItem('auth_token');

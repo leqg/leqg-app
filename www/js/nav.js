@@ -7,6 +7,15 @@ var nav = (function () {
     function setPage(e, dest) {
         localStorage.setItem('nav_page', $(dest.toPage).attr('id'));
     }
+    function checkPagechange(e, dest) {
+        if (typeof dest.toPage !== 'string' && $(dest.toPage).attr('id') === 'auth') {
+            if (auth.token) {
+                my.gotoPage(DEFAULT_PAGE);
+                location.hash = '#' + DEFAULT_PAGE;
+                e.preventDefault();
+            }
+        }
+    }
     my.gotoPage = function (page) {
         my.page = page;
         $(':mobile-pagecontainer').pagecontainer('change', '#' + page);
@@ -28,12 +37,13 @@ var nav = (function () {
         if (auth.token) {
             auth.isTokenValid(
                 my.gotoCurPage,
-                my.gotoAuthPage
+                auth.logout
             );
         } else {
             my.gotoPage('auth');
         }
-        $(window).on('pagechange', setPage);
+        $(':mobile-pagecontainer').on('pagecontainerbeforechange', checkPagechange);
+        $(':mobile-pagecontainer').on('pagecontainerchange', setPage);
     };
     return my;
 }());

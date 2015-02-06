@@ -6,10 +6,15 @@ module.exports = function (grunt) {
             uglify: {
                 combine: {
                     files: {
-                        'dist/main.js': ['js/*.js']
+                        'dist/main.js': ['js/*.js', '!js/setup.js']
                     },
                     options: {
                         sourceMap: true
+                    }
+                },
+                setup: {
+                    files: {
+                        'dist/setup.js': ['js/setup.js']
                     }
                 }
             },
