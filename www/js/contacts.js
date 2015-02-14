@@ -41,7 +41,8 @@ var contacts = (function () {
             }
         );
     }
-    function startSearch() {
+    function startSearch(e) {
+        e.preventDefault();
         var query = $('#contacts_search_query').val();
         if (query) {
             localStorage.setItem('contacts_searchquery', query);
@@ -50,6 +51,7 @@ var contacts = (function () {
         } else {
             error.display('Veuillez entrer une requête');
         }
+        return false;
     }
     function loadContact() {
         jsonapi.get(
@@ -82,7 +84,7 @@ var contacts = (function () {
     my.init = function () {
         $contacts_search_results_list = $('#contacts_search_results_list');
         $contacts_show_info = $('#contacts_show_info');
-        $('#contacts_search_send_btn').click(startSearch);
+        $('#contacts_search_form').submit(startSearch);
         $('#contacts_search_results_list').on('click', 'a', setCurContact);
     };
     return my;

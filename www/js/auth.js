@@ -18,7 +18,8 @@ var auth = (function () {
         }
         error.display(errorMsg);
     }
-    function login() {
+    function login(e) {
+        e.preventDefault();
         var email = $('#auth_email').val();
         localStorage.setItem('auth_email', email);
         if (!navigator.onLine) {
@@ -34,6 +35,7 @@ var auth = (function () {
                 }
             );
         }
+        return false;
     }
     my.token = '';
     my.setToken = function (token) {
@@ -64,7 +66,7 @@ var auth = (function () {
         if (email) {
             $('#auth_email').val(email);
         }
-        $('#auth_login_btn').click(login);
+        $('#auth_form').submit(login);
         if (auth.token) {
             auth.isTokenValid(
                 nav.gotoCurPage,

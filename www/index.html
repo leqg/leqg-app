@@ -22,19 +22,21 @@
     </div>
     <div data-role="page" id="auth">
         <h1><span>Le</span>QG<span>.info</span></h1>
-        <ul data-role="listview">
-            <li>
-                <label for="auth_email">Email de connexion :</label>
-                <input type="text" id="auth_email" autofocus="autofocus" />
-            </li>
-            <li>
-                <label for="auth_pass">Mot de passe :</label>
-                <input type="password" id="auth_pass" />
-            </li>
-            <li>
-                <input class="submit" type="button" id="auth_login_btn" value="Se connecter" />
-            </li>
-        </ul>
+        <form id="auth_form">
+            <ul data-role="listview">
+                <li>
+                    <label for="auth_email">Email de connexion :</label>
+                    <input type="text" id="auth_email" autofocus="autofocus" />
+                </li>
+                <li>
+                    <label for="auth_pass">Mot de passe :</label>
+                    <input type="password" id="auth_pass" />
+                </li>
+                <li>
+                    <input type="submit" value="Se connecter" />
+                </li>
+            </ul>
+        </form>
     </div>
     <div data-role="page" id="contacts">
         <ul data-role="listview">
@@ -44,15 +46,17 @@
         </ul>
     </div>
     <div data-role="page" id="contacts_search">
-        <ul data-role="listview">
-            <li>
-                <label for="contacts_search_query">Requête :</label>
-                <input type="search" id="contacts_search_query" autofocus="autofocus" />
-            </li>
-            <li>
-                <input class="submit" type="button" id="contacts_search_send_btn" value="Recherche" />
-            </li>
-        </ul>
+        <form id="contacts_search_form">
+            <ul data-role="listview">
+                <li>
+                    <label for="contacts_search_query">Requête :</label>
+                    <input type="search" id="contacts_search_query" autofocus="autofocus" />
+                </li>
+                <li>
+                    <input type="submit" value="Recherche" />
+                </li>
+            </ul>
+        </form>
     </div>
     <div data-role="page" id="contacts_search_results">
         <ul data-role="listview" id="contacts_search_results_list"></ul>
