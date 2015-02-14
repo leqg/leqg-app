@@ -15,6 +15,7 @@ $.ajaxSetup(
             'use strict';
             $.mobile.loading('hide');
         },
+        dataType: 'json',
         timeout: 5000
     }
 );

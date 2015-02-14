@@ -7,15 +7,19 @@ var jsonapi = (function () {
         if (!params) {
             params = {};
         }
-        var customHeaders = {};
+        var customHeaders = {},
+            callurl = BASE_URL + resource + '/';
         if (params.user) {
             customHeaders.Authorization = 'Basic ' + window.btoa(params.user + ':' + params.pass);
         } else if (auth.token) {
             customHeaders.Authorization = 'LeQG ' + auth.token;
         }
+        if (params.id) {
+            callurl += params.id;
+        }
         $.ajax(
             {
-                url: BASE_URL + resource + '/',
+                url: callurl,
                 success: params.success,
                 error: params.error,
                 headers: customHeaders,
