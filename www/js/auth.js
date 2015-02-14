@@ -52,7 +52,8 @@ var auth = (function () {
     my.logout = function () {
         my.token = '';
         localStorage.removeItem('auth_token');
-        nav.gotoAuthPage();
+        nav.gotoPage('auth');
+        error.display('Vous avez été déconnecté.');
     };
     my.init = function () {
         var email = localStorage.getItem('auth_email'),
@@ -64,6 +65,14 @@ var auth = (function () {
             $('#auth_email').val(email);
         }
         $('#auth_login_btn').click(login);
+        if (auth.token) {
+            auth.isTokenValid(
+                nav.gotoCurPage,
+                my.logout
+            );
+        } else {
+            nav.gotoPage('auth');
+        }
     };
     return my;
 }());

@@ -39,21 +39,10 @@ var nav = (function () {
         }
         my.gotoPage(page);
     };
-    my.gotoAuthPage = function () {
-        my.gotoPage('auth');
-    };
     my.init = function () {
         my.page = localStorage.getItem('nav_page');
         //We remove it but it will be set again by the next setPage()
         localStorage.removeItem('nav_page');
-        if (auth.token) {
-            auth.isTokenValid(
-                my.gotoCurPage,
-                auth.logout
-            );
-        } else {
-            my.gotoPage('auth');
-        }
         $(':mobile-pagecontainer').on('pagecontainerbeforechange', checkPagechange);
         $(':mobile-pagecontainer').on('pagecontainerchange', setPage);
     };
