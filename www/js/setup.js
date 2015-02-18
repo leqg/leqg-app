@@ -1,4 +1,5 @@
 /*global $*/
+/*jslint browser: true*/
 $.ajaxSetup(
     {
         beforeSend: function () {
@@ -17,5 +18,16 @@ $.ajaxSetup(
         },
         dataType: 'json',
         timeout: 5000
+    }
+);
+$(document).on(
+    'mobileinit',
+    function () {
+        'use strict';
+        $.extend(
+            $.mobile, {
+                defaultPageTransition: 'none'
+            }
+        );
     }
 );
