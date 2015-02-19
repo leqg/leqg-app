@@ -25,7 +25,8 @@ $(document).on(
     function () {
         'use strict';
         $.extend(
-            $.mobile, {
+            $.mobile,
+            {
                 defaultPageTransition: 'none'
             }
         );
