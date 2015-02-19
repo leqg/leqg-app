@@ -21,19 +21,23 @@ var auth = (function () {
     function login(e) {
         e.preventDefault();
         var email = $('#auth_email').val();
-        localStorage.setItem('auth_email', email);
-        if (!navigator.onLine) {
-            error.display('Impossible de se connecter au réseau');
+        if (email) {
+            localStorage.setItem('auth_email', email);
+            if (!navigator.onLine) {
+                error.display('Impossible de se connecter au réseau');
+            } else {
+                jsonapi.get(
+                    'authenticate',
+                    {
+                        success: authSuccess,
+                        error: loginError,
+                        user: email,
+                        pass: $('#auth_pass').val()
+                    }
+                );
+            }
         } else {
-            jsonapi.get(
-                'authenticate',
-                {
-                    success: authSuccess,
-                    error: loginError,
-                    user: email,
-                    pass: $('#auth_pass').val()
-                }
-            );
+            error.display('Veuillez entrer votre adresse e-mail.');
         }
         return false;
     }
