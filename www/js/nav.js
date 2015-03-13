@@ -1,9 +1,10 @@
 /*global $, DEFAULT_PAGE, auth*/
 /*jslint browser: true, unparam: true*/
+/**
+ * @namespace
+ * */
 var nav = (function () {
     'use strict';
-    var my = {};
-    my.page = '';
     function setPage(e, dest) {
         var id = $(dest.toPage).attr('id');
         if (localStorage.getItem('nav_page') !== id) {
@@ -20,33 +21,38 @@ var nav = (function () {
                 if (navigator.app && $(':mobile-pagecontainer').pagecontainer('getActivePage').attr('id') === DEFAULT_PAGE) {
                     navigator.app.exitApp();
                 } else {
-                    my.gotoPage(DEFAULT_PAGE);
+                    nav.gotoPage(DEFAULT_PAGE);
                     location.hash = '#' + DEFAULT_PAGE;
                 }
             }
         }
     }
-    my.gotoPage = function (page) {
-        my.page = page;
-        $(':mobile-pagecontainer').pagecontainer('change', '#' + page);
-    };
-    my.gotoCurPage = function () {
-        var page = '';
-        if (my.page && my.page !== 'auth') {
-            page = my.page;
-        } else {
-            page = DEFAULT_PAGE;
+    /**
+     * @scope nav
+     * */
+    return {
+        page: '',
+        gotoPage: function (page) {
+            nav.page = page;
+            $(':mobile-pagecontainer').pagecontainer('change', '#' + page);
+        },
+        gotoCurPage: function () {
+            var page = '';
+            if (nav.page && nav.page !== 'auth') {
+                page = nav.page;
+            } else {
+                page = DEFAULT_PAGE;
+            }
+            nav.gotoPage(page);
+        },
+        init: function () {
+            nav.page = localStorage.getItem('nav_page');
+            //We remove it but it will be set again by the next setPage()
+            localStorage.removeItem('nav_page');
+            $(':mobile-pagecontainer').on('pagecontainerbeforechange', checkPagechange);
+            $(':mobile-pagecontainer').on('pagecontainerchange', setPage);
         }
-        my.gotoPage(page);
     };
-    my.init = function () {
-        my.page = localStorage.getItem('nav_page');
-        //We remove it but it will be set again by the next setPage()
-        localStorage.removeItem('nav_page');
-        $(':mobile-pagecontainer').on('pagecontainerbeforechange', checkPagechange);
-        $(':mobile-pagecontainer').on('pagecontainerchange', setPage);
-    };
-    return my;
 }());
 
 $(document).ready(nav.init);

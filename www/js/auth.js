@@ -1,5 +1,8 @@
 /*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi, error*/
 /*jslint browser: true*/
+/**
+ * @namespace
+ * */
 var auth = (function () {
     'use strict';
     var my = {};
@@ -41,46 +44,50 @@ var auth = (function () {
         }
         return false;
     }
-    my.token = '';
-    my.setToken = function (token) {
-        localStorage.setItem('auth_token', token);
-        my.token = token;
-    };
-    my.isTokenValid = function (success, error) {
-        jsonapi.get(
-            'authenticate',
-            {
-                success: success,
-                error: error
-            }
-        );
-    };
-    my.logout = function () {
-        my.token = '';
-        localStorage.removeItem('auth_token');
-        nav.gotoPage('auth');
-        error.display('Vous avez été déconnecté.');
-    };
-    my.init = function () {
-        var email = localStorage.getItem('auth_email'),
-            token = localStorage.getItem('auth_token');
-        if (token) {
-            my.token = token;
-        }
-        if (email) {
-            $('#auth_email').val(email);
-        }
-        $('#auth_form').submit(login);
-        if (auth.token) {
-            auth.isTokenValid(
-                nav.gotoCurPage,
-                my.logout
+    /**
+     * @scope auth
+     * */
+    return {
+        token: '',
+        setToken: function (token) {
+            localStorage.setItem('auth_token', token);
+            auth.token = token;
+        },
+        isTokenValid: function (success, error) {
+            jsonapi.get(
+                'authenticate',
+                {
+                    success: success,
+                    error: error
+                }
             );
-        } else {
+        },
+        logout: function () {
+            auth.token = '';
+            localStorage.removeItem('auth_token');
             nav.gotoPage('auth');
+            error.display('Vous avez été déconnecté.');
+        },
+        init: function () {
+            var email = localStorage.getItem('auth_email'),
+                token = localStorage.getItem('auth_token');
+            if (token) {
+                auth.token = token;
+            }
+            if (email) {
+                $('#auth_email').val(email);
+            }
+            $('#auth_form').submit(login);
+            if (auth.token) {
+                auth.isTokenValid(
+                    nav.gotoCurPage,
+                    auth.logout
+                );
+            } else {
+                nav.gotoPage('auth');
+            }
         }
     };
-    return my;
 }());
 
 $(document).ready(auth.init);

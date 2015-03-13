@@ -1,18 +1,24 @@
 /*global $*/
 /*jslint browser: true*/
+/**
+ * @namespace
+ * */
 var error = (function () {
     'use strict';
-    var my = {},
-        $error;
-    my.display = function (msg) {
-        $('#error_msg').text(msg);
-        $error.popup('open');
+    var $error;
+    /**
+     * @scope error
+     * */
+    return {
+        display: function (msg) {
+            $('#error_msg').text(msg);
+            $error.popup('open');
+        },
+        init: function () {
+            $error = $('#error');
+            $error.enhanceWithin().popup();
+        }
     };
-    my.init = function () {
-        $error = $('#error');
-        $error.enhanceWithin().popup();
-    };
-    return my;
 }());
 
 $(document).ready(error.init);

@@ -1,15 +1,28 @@
 /*global $, $window*/
 /*jslint browser: true*/
+/**
+ * Fonctions à répartir dans les autres modules quand le code sera plus avancé
+ * @namespace
+ * */
 var common = (function () {
     'use strict';
-    var my = {};
+    /**
+     * Appelé lorsque la connexion est coupée
+     * */
     function lostConnection() {
         $.mobile.loading('hide');
     }
-    my.init = function () {
-        $window.on('offline', lostConnection);
+    /**
+     * @scope common
+     * */
+    return {
+        /**
+         * Initialisation du module
+         * */
+        init: function () {
+            $window.on('offline', lostConnection);
+        }
     };
-    return my;
 }());
 
 $(document).ready(common.init);

@@ -1,9 +1,11 @@
 /*global $, jsonapi, nav, error*/
 /*jslint browser: true, unparam: true*/
+/**
+ * @namespace
+ * */
 var contacts = (function () {
     'use strict';
-    var my = {},
-        $contacts_search_results_list,
+    var $contacts_search_results_list,
         $contacts_show_info;
     function searchResult(results) {
         if (results.contacts && results.contacts.length > 0) {
@@ -66,28 +68,32 @@ var contacts = (function () {
         localStorage.setItem('contacts_id', $(e.target).data('contact'));
         $contacts_show_info.empty();
     }
-    my.onnav = function (pageid) {
-        switch (pageid) {
-        case 'contacts_show':
-            loadContact();
-            break;
-        case 'contacts_search_results':
-            var searchquery = localStorage.getItem('contacts_searchquery');
-            if (searchquery) {
-                search(searchquery);
-            } else {
-                nav.gotoPage('contacts_search');
+    /**
+     * @scope contacts
+     * */
+    return {
+        onnav: function (pageid) {
+            switch (pageid) {
+            case 'contacts_show':
+                loadContact();
+                break;
+            case 'contacts_search_results':
+                var searchquery = localStorage.getItem('contacts_searchquery');
+                if (searchquery) {
+                    search(searchquery);
+                } else {
+                    nav.gotoPage('contacts_search');
+                }
+                break;
             }
-            break;
+        },
+        init: function () {
+            $contacts_search_results_list = $('#contacts_search_results_list');
+            $contacts_show_info = $('#contacts_show_info');
+            $('#contacts_search_form').submit(startSearch);
+            $('#contacts_search_results_list').on('click', 'a', setCurContact);
         }
     };
-    my.init = function () {
-        $contacts_search_results_list = $('#contacts_search_results_list');
-        $contacts_show_info = $('#contacts_show_info');
-        $('#contacts_search_form').submit(startSearch);
-        $('#contacts_search_results_list').on('click', 'a', setCurContact);
-    };
-    return my;
 }());
 
 $(document).ready(contacts.init);
