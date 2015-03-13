@@ -3,6 +3,7 @@
 /**
  * Fonctions à répartir dans les autres modules quand le code sera plus avancé
  * @namespace
+ * @author Pierre Rudloff <contact@rudloff.pro>
  * */
 var common = (function () {
     'use strict';

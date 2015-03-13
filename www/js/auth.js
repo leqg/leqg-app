@@ -2,6 +2,7 @@
 /*jslint browser: true*/
 /**
  * @namespace
+ * @author Pierre Rudloff <contact@rudloff.pro>
  * */
 var auth = (function () {
     'use strict';

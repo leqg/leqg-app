@@ -2,6 +2,7 @@
 /*jslint browser: true, unparam: true*/
 /**
  * @namespace
+ * @author Pierre Rudloff <contact@rudloff.pro>
  * */
 var nav = (function () {
     'use strict';
