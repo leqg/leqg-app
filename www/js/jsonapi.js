@@ -1,6 +1,7 @@
 /*global $, BASE_URL, auth*/
 /*jslint browser: true*/
 /**
+ * Gère les interactions avec l'API
  * @namespace
  * @author Pierre Rudloff <contact@rudloff.pro>
  * */
@@ -10,6 +11,12 @@ var jsonapi = (function () {
      * @scope jsonapi
      * */
     return {
+        /**
+         * Exécute une requête GET
+         * @param {string} resource Ressource à récupérer
+         * @param {object} params   Paramètres de la requête
+         * @example jsonapi.get('contact', { filters: { search: 'Senger' }, success: searchResult });
+         * */
         get: function (resource, params) {
             if (!params) {
                 params = {};
