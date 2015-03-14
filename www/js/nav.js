@@ -9,17 +9,15 @@
 var nav = (function () {
     'use strict';
     /**
-     * Appelé lors du changement de page, enregistre la page en cours et prévient le module concerné
+     * Enregistre la page en cours et prévient le module concerné
      *
      * @param {Object} e Événement
      * @param {Object} dest Destination
      *
      * @memberof nav
      * @inner
-     * @listens  jQuery:pagecontainerchange
      * */
     function setPage(e, dest) {
-        console.log(typeof e, typeof dest);
         var id = $(dest.toPage).attr('id');
         if (localStorage.getItem('nav_page') !== id) {
             if (window[id.split('_')[0]].onnav) {
@@ -28,6 +26,15 @@ var nav = (function () {
         }
         localStorage.setItem('nav_page', $(dest.toPage).attr('id'));
     }
+    /**
+     * Vérifie si la page a changé
+     *
+     * @param {Object} e Événement
+     * @param {Object} dest Destination
+     *
+     * @memberof nav
+     * @inner
+     * */
     function checkPagechange(e, dest) {
         if (typeof dest.toPage !== 'string' && $(dest.toPage).attr('id') === 'auth') {
             if (auth.token) {
@@ -42,11 +49,27 @@ var nav = (function () {
         }
     }
     return {
+        /**
+         * Identifiant de la page en cours
+         * @type string
+         * @memberof nav
+         * */
         page: '',
+        /**
+         * Change de page
+         *
+         * @param {string} page Identifiant de la nouvelle page
+         *
+         * @memberof nav
+         * */
         gotoPage: function (page) {
             nav.page = page;
             $(':mobile-pagecontainer').pagecontainer('change', '#' + page);
         },
+        /**
+         * Retourne à la page courante
+         * @memberof nav
+         * */
         gotoCurPage: function () {
             var page = '';
             if (nav.page && nav.page !== 'auth') {
@@ -56,6 +79,11 @@ var nav = (function () {
             }
             nav.gotoPage(page);
         },
+        /**
+         * Initialisation du module
+         * @memberof nav
+         * @see https://api.jquerymobile.com/pagecontainer/
+         * */
         init: function () {
             nav.page = localStorage.getItem('nav_page');
             //We remove it but it will be set again by the next setPage()

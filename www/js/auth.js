@@ -8,11 +8,27 @@
  * */
 var auth = (function () {
     'use strict';
-    var my = {};
+    /**
+     * Appelé en cas de connexion réussie
+     *
+     * @param {Object} e Événement
+     *
+     * @memberof auth
+     * @inner
+     * */
     function authSuccess(e) {
         auth.setToken(e.tokens[0].id);
         nav.gotoPage(DEFAULT_PAGE);
     }
+    /**
+     * Appelé en cas d'erreur de connexion
+     *
+     * @param {Object} e Événement
+     * @param {status} status Type d'erreur
+     *
+     * @memberof auth
+     * @inner
+     * */
     function loginError(e, status) {
         var errorMsg;
         if (status === 'timeout') {
@@ -24,6 +40,15 @@ var auth = (function () {
         }
         error.display(errorMsg);
     }
+    /**
+     * Tentative de connexion
+     *
+     * @param {Object} e Événement
+     *
+     * @memberof auth
+     * @inner
+     * @return   {bool} Retourne false pour empêcher le comportement par défaut du formulaire
+     * */
     function login(e) {
         e.preventDefault();
         var email = $('#auth_email').val();
@@ -48,11 +73,31 @@ var auth = (function () {
         return false;
     }
     return {
+        /**
+         * Jeton en cours d'utilisation
+         * @memberof auth
+         * @type string
+         * */
         token: '',
+        /**
+         * Enregistre un nouveau token dans le localStorage
+         *
+         * @param {string} token
+         *
+         * @memberof auth
+         * */
         setToken: function (token) {
             localStorage.setItem('auth_token', token);
             auth.token = token;
         },
+        /**
+         * Vérifie si le token utilisé est valide
+         *
+         * @param {function} success Fonction appelée en cas de succès
+         * @param {function} error   Fonction appelée en cas d'erreur
+         *
+         * @memberof auth
+         * */
         isTokenValid: function (success, error) {
             jsonapi.get(
                 'authenticate',
@@ -62,12 +107,20 @@ var auth = (function () {
                 }
             );
         },
+        /**
+         * Déconnexion
+         * @memberof auth
+         * */
         logout: function () {
             auth.token = '';
             localStorage.removeItem('auth_token');
             nav.gotoPage('auth');
             error.display('Vous avez été déconnecté.');
         },
+         /**
+         * Initialisation du module
+         * @memberof auth
+         * */
         init: function () {
             var email = localStorage.getItem('auth_email'),
                 token = localStorage.getItem('auth_token');

@@ -22,7 +22,6 @@ var error = (function () {
         /**
          * Initialisation du module
          * @memberof error
-         * @listens jQuery:ready
          * */
         init: function () {
             $error = $('#error');

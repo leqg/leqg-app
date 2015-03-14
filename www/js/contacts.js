@@ -10,6 +10,14 @@ var contacts = (function () {
     'use strict';
     var $contacts_search_results_list,
         $contacts_show_info;
+    /**
+     * Affiche les résultats d'une recherche
+     *
+     * @param {Object} results Résultats
+     *
+     * @memberof contacts
+     * @inner
+     * */
     function searchResult(results) {
         if (results.contacts && results.contacts.length > 0) {
             $contacts_search_results_list.empty();
@@ -25,6 +33,14 @@ var contacts = (function () {
             error.display('Aucun résultat');
         }
     }
+    /**
+     * Affiche un contact
+     *
+     * @param {Array} results Informations sur le contact
+     *
+     * @memberof contacts
+     * @inner
+     * */
     function showContact(results) {
         $contacts_show_info.empty();
         $.each(
@@ -35,6 +51,14 @@ var contacts = (function () {
         );
         $contacts_show_info.listview('refresh');
     }
+    /**
+     * Lance une recherche
+     *
+     * @param {string} query Terme à rechercher
+     *
+     * @memberof contacts
+     * @inner
+     * */
     function search(query) {
         jsonapi.get(
             'contact',
@@ -46,6 +70,15 @@ var contacts = (function () {
             }
         );
     }
+    /**
+     * Prépare une recherche
+     *
+     * @param {Object} e Événement
+     *
+     * @memberof contacts
+     * @inner
+     * @return   {bool} Retourne false pour empêcher le comportement par défaut du formulaire
+     * */
     function startSearch(e) {
         e.preventDefault();
         var query = $('#contacts_search_query').val();
@@ -58,6 +91,12 @@ var contacts = (function () {
         }
         return false;
     }
+    /**
+     * Charge les informations concernant un contact
+     *
+     * @memberof contacts
+     * @inner
+     * */
     function loadContact() {
         jsonapi.get(
             'contact',
@@ -67,6 +106,14 @@ var contacts = (function () {
             }
         );
     }
+    /**
+     * Définit le contact courant
+     *
+     * @param {Object} e Événement
+     *
+     * @memberof contacts
+     * @inner
+     * */
     function setCurContact(e) {
         localStorage.setItem('contacts_id', $(e.target).data('contact'));
         $contacts_show_info.empty();
@@ -93,6 +140,10 @@ var contacts = (function () {
                 break;
             }
         },
+        /**
+         * Initialisation du module
+         * @memberof contact
+         * */
         init: function () {
             $contacts_search_results_list = $('#contacts_search_results_list');
             $contacts_show_info = $('#contacts_show_info');

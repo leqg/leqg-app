@@ -13,7 +13,6 @@ var common = (function () {
      *
      * @memberof common
      * @inner
-     * @listens  offline
      * */
     function lostConnection() {
         $.mobile.loading('hide');
