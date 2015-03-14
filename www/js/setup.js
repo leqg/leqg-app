@@ -1,5 +1,6 @@
 /*global $*/
 /*jslint browser: true*/
+//Configuration des requêtes AJAX
 $.ajaxSetup(
     {
         beforeSend: function () {
@@ -20,6 +21,7 @@ $.ajaxSetup(
         timeout: 5000
     }
 );
+//Configuration de jQuery Mobile
 $(document).on(
     'mobileinit',
     function () {
