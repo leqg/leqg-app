@@ -2,12 +2,14 @@
 /*jslint browser: true*/
 /**
  * Gère les interactions avec l'API
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var jsonapi = (function () {
     'use strict';
     /**
+     * Méthodes publiques
      * @scope jsonapi
      * */
     return {

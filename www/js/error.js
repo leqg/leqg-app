@@ -2,13 +2,15 @@
 /*jslint browser: true*/
 /**
  * Gestion des erreurs
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var error = (function () {
     'use strict';
     var $error;
     /**
+     * Méthodes publiques
      * @scope error
      * */
     return {

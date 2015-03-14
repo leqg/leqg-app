@@ -1,8 +1,10 @@
 /*global $, DEFAULT_PAGE, auth*/
 /*jslint browser: true, unparam: true*/
 /**
+ * Gestion de la navigation
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var nav = (function () {
     'use strict';
@@ -29,6 +31,7 @@ var nav = (function () {
         }
     }
     /**
+     * Méthodes publiques
      * @scope nav
      * */
     return {

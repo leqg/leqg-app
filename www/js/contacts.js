@@ -1,8 +1,10 @@
 /*global $, jsonapi, nav, error*/
 /*jslint browser: true, unparam: true*/
 /**
+ * Gestion des contacts
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var contacts = (function () {
     'use strict';
@@ -70,6 +72,7 @@ var contacts = (function () {
         $contacts_show_info.empty();
     }
     /**
+     * Méthodes publiques
      * @scope contacts
      * */
     return {

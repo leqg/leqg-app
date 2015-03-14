@@ -2,8 +2,9 @@
 /*jslint browser: true*/
 /**
  * Fonctions à répartir dans les autres modules quand le code sera plus avancé
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var common = (function () {
     'use strict';
@@ -14,6 +15,7 @@ var common = (function () {
         $.mobile.loading('hide');
     }
     /**
+     * Méthodes publiques
      * @scope common
      * */
     return {

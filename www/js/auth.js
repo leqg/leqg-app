@@ -1,8 +1,10 @@
 /*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi, error*/
 /*jslint browser: true*/
 /**
+ * Gestion des connexions
+ *
  * @namespace
- * @author Pierre Rudloff <contact@rudloff.pro>
+ * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
 var auth = (function () {
     'use strict';
@@ -46,6 +48,7 @@ var auth = (function () {
         return false;
     }
     /**
+     * Méthodes publiques
      * @scope auth
      * */
     return {

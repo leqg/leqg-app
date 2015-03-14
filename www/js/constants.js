@@ -2,20 +2,23 @@
 /*jslint browser: true*/
 /**
  * URL absolue de l'API
+ *
  * @constant
- * @type string
+ * @type     string
  * */
 var BASE_URL = 'https://api.leqg.info/';
 /**
  * Page par défaut
+ *
  * @constant
- * @type string
+ * @type     string
  * */
 var DEFAULT_PAGE = 'contacts';
 
 /**
  * Objet jQuery window
+ *
  * @global
- * @type object
+ * @type   object
  * */
 var $window = $(window);
