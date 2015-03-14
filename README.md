@@ -17,3 +17,6 @@ Before committing please run ```grunt lint``` and fix any error that may appear.
 ##Test on Android device (via USB)
 
     cordova run android --device
+
+##Generate documentation
+Simply run ```grunt doc``` in the [www](www/) folder.
