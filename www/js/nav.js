@@ -8,7 +8,18 @@
  * */
 var nav = (function () {
     'use strict';
+    /**
+     * Appelé lors du changement de page, enregistre la page en cours et préviens le module concerné
+     *
+     * @param {Object} e Événement
+     * @param {Object} dest Destination
+     *
+     * @memberof nav
+     * @inner
+     * @listens  jQuery:pagecontainerchange
+     * */
     function setPage(e, dest) {
+        console.log(typeof e, typeof dest);
         var id = $(dest.toPage).attr('id');
         if (localStorage.getItem('nav_page') !== id) {
             if (window[id.split('_')[0]].onnav) {
@@ -30,10 +41,6 @@ var nav = (function () {
             }
         }
     }
-    /**
-     * Méthodes publiques
-     * @scope nav
-     * */
     return {
         page: '',
         gotoPage: function (page) {

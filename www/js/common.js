@@ -10,17 +10,18 @@ var common = (function () {
     'use strict';
     /**
      * Appelé lorsque la connexion est coupée
+     *
+     * @memberof common
+     * @inner
+     * @listens  offline
      * */
     function lostConnection() {
         $.mobile.loading('hide');
     }
-    /**
-     * Méthodes publiques
-     * @scope common
-     * */
     return {
         /**
          * Initialisation du module
+         * @memberof common
          * */
         init: function () {
             $window.on('offline', lostConnection);

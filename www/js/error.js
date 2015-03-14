@@ -9,13 +9,10 @@
 var error = (function () {
     'use strict';
     var $error;
-    /**
-     * Méthodes publiques
-     * @scope error
-     * */
     return {
         /**
          * Affiche une erreur
+         * @memberof error
          * @param {string} msg Message d'erreur à afficher
          * */
         display: function (msg) {
@@ -24,6 +21,8 @@ var error = (function () {
         },
         /**
          * Initialisation du module
+         * @memberof error
+         * @listens jQuery:ready
          * */
         init: function () {
             $error = $('#error');

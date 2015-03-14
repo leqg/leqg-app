@@ -8,15 +8,12 @@
  * */
 var jsonapi = (function () {
     'use strict';
-    /**
-     * Méthodes publiques
-     * @scope jsonapi
-     * */
     return {
         /**
          * Exécute une requête GET
+         * @memberof jsonapi
          * @param {string} resource Ressource à récupérer
-         * @param {object} params   Paramètres de la requête
+         * @param {Object} params   Paramètres de la requête
          * @example jsonapi.get('contact', { filters: { search: 'Senger' }, success: searchResult });
          * */
         get: function (resource, params) {

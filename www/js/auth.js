@@ -10,7 +10,7 @@ var auth = (function () {
     'use strict';
     var my = {};
     function authSuccess(e) {
-        my.setToken(e.tokens[0].id);
+        auth.setToken(e.tokens[0].id);
         nav.gotoPage(DEFAULT_PAGE);
     }
     function loginError(e, status) {
@@ -47,10 +47,6 @@ var auth = (function () {
         }
         return false;
     }
-    /**
-     * Méthodes publiques
-     * @scope auth
-     * */
     return {
         token: '',
         setToken: function (token) {

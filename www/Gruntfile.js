@@ -39,6 +39,14 @@ module.exports = function (grunt) {
                 options: {
                     reportpath: false
                 }
+            },
+            jsdoc : {
+                doc : {
+                    src: ['js/*.js', '../README.md', 'package.json'],
+                    options: {
+                        destination: 'doc'
+                    }
+                }
             }
         }
     );
@@ -47,7 +55,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-html-validation');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('default', ['uglify']);
     grunt.registerTask('lint', ['jslint', 'validation']);
+    grunt.registerTask('doc', ['jsdoc']);
 };

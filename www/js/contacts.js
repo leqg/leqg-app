@@ -71,11 +71,13 @@ var contacts = (function () {
         localStorage.setItem('contacts_id', $(e.target).data('contact'));
         $contacts_show_info.empty();
     }
-    /**
-     * Méthodes publiques
-     * @scope contacts
-     * */
     return {
+        /**
+         * Appelé lorsqu'on arrive sur une page du module contacts
+         * @memberof contacts
+         * @param {string} pageid
+         * @see nav~setPage
+         * */
         onnav: function (pageid) {
             switch (pageid) {
             case 'contacts_show':
