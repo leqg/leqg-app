@@ -9,7 +9,7 @@
 var nav = (function () {
     'use strict';
     /**
-     * Appelé lors du changement de page, enregistre la page en cours et préviens le module concerné
+     * Appelé lors du changement de page, enregistre la page en cours et prévient le module concerné
      *
      * @param {Object} e Événement
      * @param {Object} dest Destination
