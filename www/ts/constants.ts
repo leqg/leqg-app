@@ -1,5 +1,3 @@
-/*global $*/
-/*jslint browser: true*/
 /**
  * URL absolue de l'API
  *

@@ -1,13 +1,10 @@
-/*global $, jsonapi, nav, error*/
-/*jslint browser: true, unparam: true*/
 /**
  * Gestion des contacts
  *
  * @namespace
  * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
-var contacts = (function () {
-    'use strict';
+module contacts {
     var $contacts_search_results_list,
         $contacts_show_info;
     /**
@@ -118,39 +115,37 @@ var contacts = (function () {
         localStorage.setItem('contacts_id', $(e.target).data('contact'));
         $contacts_show_info.empty();
     }
-    return {
-        /**
-         * Appelé lorsqu'on arrive sur une page du module contacts
-         * @memberof contacts
-         * @param {string} pageid
-         * @see nav~setPage
-         * */
-        onnav: function (pageid) {
-            switch (pageid) {
-            case 'contacts_show':
-                loadContact();
-                break;
-            case 'contacts_search_results':
-                var searchquery = localStorage.getItem('contacts_searchquery');
-                if (searchquery) {
-                    search(searchquery);
-                } else {
-                    nav.gotoPage('contacts_search');
-                }
-                break;
+    /**
+     * Appelé lorsqu'on arrive sur une page du module contacts
+     * @memberof contacts
+     * @param {string} pageid
+     * @see nav~setPage
+     * */
+    export function onnav(pageid) {
+        switch (pageid) {
+        case 'contacts_show':
+            loadContact();
+            break;
+        case 'contacts_search_results':
+            var searchquery = localStorage.getItem('contacts_searchquery');
+            if (searchquery) {
+                search(searchquery);
+            } else {
+                nav.gotoPage('contacts_search');
             }
-        },
-        /**
-         * Initialisation du module
-         * @memberof contact
-         * */
-        init: function () {
-            $contacts_search_results_list = $('#contacts_search_results_list');
-            $contacts_show_info = $('#contacts_show_info');
-            $('#contacts_search_form').submit(startSearch);
-            $('#contacts_search_results_list').on('click', 'a', setCurContact);
+            break;
         }
-    };
-}());
+    }
+    /**
+     * Initialisation du module
+     * @memberof contact
+     * */
+    export function init() {
+        $contacts_search_results_list = $('#contacts_search_results_list');
+        $contacts_show_info = $('#contacts_show_info');
+        $('#contacts_search_form').submit(startSearch);
+        $('#contacts_search_results_list').on('click', 'a', setCurContact);
+    }
+}
 
 $(document).ready(contacts.init);

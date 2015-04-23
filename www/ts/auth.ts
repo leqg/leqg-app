@@ -1,13 +1,10 @@
-/*global $, BASE_URL, DEFAULT_PAGE, nav, jsonapi, error*/
-/*jslint browser: true*/
 /**
  * Gestion des connexions
  *
  * @namespace
  * @author    Pierre Rudloff <contact@rudloff.pro>
  * */
-var auth = (function () {
-    'use strict';
+module auth {
     /**
      * Appelé en cas de connexion réussie
      *
@@ -72,75 +69,73 @@ var auth = (function () {
         }
         return false;
     }
-    return {
-        /**
-         * Jeton en cours d'utilisation
-         * @memberof auth
-         * @type string
-         * */
-        token: '',
-        /**
-         * Enregistre un nouveau token dans le localStorage
-         *
-         * @param {string} token
-         *
-         * @memberof auth
-         * */
-        setToken: function (token) {
-            localStorage.setItem('auth_token', token);
+    /**
+     * Jeton en cours d'utilisation
+     * @memberof auth
+     * @type string
+     * */
+    export var token = '';
+    /**
+     * Enregistre un nouveau token dans le localStorage
+     *
+     * @param {string} token
+     *
+     * @memberof auth
+     * */
+    export function setToken(token) {
+        localStorage.setItem('auth_token', token);
+        auth.token = token;
+    }
+    /**
+     * Vérifie si le token utilisé est valide
+     *
+     * @param {function} success Fonction appelée en cas de succès
+     * @param {function} error   Fonction appelée en cas d'erreur
+     *
+     * @memberof auth
+     * */
+    export function isTokenValid(success, error) {
+        jsonapi.get(
+            'authenticate',
+            {
+                success: success,
+                error: error
+            }
+        );
+    }
+    /**
+     * Déconnexion
+     * @memberof auth
+     * */
+    export function logout() {
+        auth.token = '';
+        localStorage.removeItem('auth_token');
+        nav.gotoPage('auth');
+        error.display('Vous avez été déconnecté.');
+    }
+     /**
+     * Initialisation du module
+     * @memberof auth
+     * */
+    export function init() {
+        var email = localStorage.getItem('auth_email'),
+            token = localStorage.getItem('auth_token');
+        if (token) {
             auth.token = token;
-        },
-        /**
-         * Vérifie si le token utilisé est valide
-         *
-         * @param {function} success Fonction appelée en cas de succès
-         * @param {function} error   Fonction appelée en cas d'erreur
-         *
-         * @memberof auth
-         * */
-        isTokenValid: function (success, error) {
-            jsonapi.get(
-                'authenticate',
-                {
-                    success: success,
-                    error: error
-                }
-            );
-        },
-        /**
-         * Déconnexion
-         * @memberof auth
-         * */
-        logout: function () {
-            auth.token = '';
-            localStorage.removeItem('auth_token');
-            nav.gotoPage('auth');
-            error.display('Vous avez été déconnecté.');
-        },
-         /**
-         * Initialisation du module
-         * @memberof auth
-         * */
-        init: function () {
-            var email = localStorage.getItem('auth_email'),
-                token = localStorage.getItem('auth_token');
-            if (token) {
-                auth.token = token;
-            }
-            if (email) {
-                $('#auth_email').val(email);
-            }
-            $('#auth_form').submit(login);
-            if (auth.token) {
-                auth.isTokenValid(
-                    nav.gotoCurPage,
-                    auth.logout
-                );
-            } else {
-                nav.gotoPage('auth');
-            }
         }
-    };
-}());
+        if (email) {
+            $('#auth_email').val(email);
+        }
+        $('#auth_form').submit(login);
+        if (auth.token) {
+            auth.isTokenValid(
+                nav.gotoCurPage,
+                auth.logout
+            );
+        } else {
+            nav.gotoPage('auth');
+        }
+    }
+}
 
 $(document).ready(auth.init);

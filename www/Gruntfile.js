@@ -3,33 +3,22 @@ module.exports = function (grunt) {
     'use strict';
     grunt.initConfig(
         {
-            uglify: {
+            typescript: {
                 combine: {
                     files: {
-                        'dist/main.js': ['js/*.js', '!js/setup.js']
-                    },
-                    options: {
-                        sourceMap: true
+                        'dist/main.js': ['ts/*.ts', '!ts/setup.ts']
                     }
                 },
                 setup: {
                     files: {
-                        'dist/setup.js': ['js/setup.js']
+                        'dist/setup.js': ['ts/setup.ts', 'ts/_deps.ts']
                     }
                 }
             },
             watch: {
                 scripts: {
-                    files: ['js/*.js'],
-                    tasks: ['uglify']
-                }
-            },
-            jslint: {
-                js: {
-                    src: ['js/*.js']
-                },
-                Gruntfile: {
-                    src: ['Gruntfile.js']
+                    files: ['ts/*.ts'],
+                    tasks: ['typescript']
                 }
             },
             validation: {
@@ -51,13 +40,12 @@ module.exports = function (grunt) {
         }
     );
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-html-validation');
     grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('default', ['uglify']);
-    grunt.registerTask('lint', ['jslint', 'validation']);
+    grunt.registerTask('default', ['typescript']);
+    grunt.registerTask('lint', ['validation']);
     grunt.registerTask('doc', ['jsdoc']);
 };
