@@ -5,7 +5,7 @@
         "grunt-typescript": "~0.6.1",
         "grunt-contrib-watch": "~0.6.1",
         "grunt-html-validation": "~0.1.18",
-        "grunt-jsdoc": "~0.5.8"
+        "grunt-typedoc": "~0.2.2"
     },
     "private": true
 }

@@ -29,11 +29,11 @@ module.exports = function (grunt) {
                     reportpath: false
                 }
             },
-            jsdoc : {
+            typedoc : {
                 doc : {
-                    src: ['js/*.js', '../README.md', 'package.json'],
+                    src: ['ts/*.ts'],
                     options: {
-                        destination: 'doc'
+                        out: 'doc'
                     }
                 }
             }
@@ -43,9 +43,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-html-validation');
-    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.registerTask('default', ['typescript']);
     grunt.registerTask('lint', ['validation']);
-    grunt.registerTask('doc', ['jsdoc']);
+    grunt.registerTask('doc', ['typedoc']);
 };
